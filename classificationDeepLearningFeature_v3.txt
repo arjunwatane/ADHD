@@ -1,0 +1,47 @@
+file:   classificationDeepLearningFeature_v3.m
+
+Description: Classification of Deep Learning Features of sMRI brain images
+
+List and describe changes here:
+	-
+	-
+	-
+	-
+	-
+
+
+DEFAULT SETTINGS:
+	- Train Using Full Data Set 
+		- Train: KKI, NeuroIMAGE, NYU, OHSU, Peking_3
+		- Test: KKI, NeuroIMAGE, NYU, OHSU, Peking_1
+	- 'sliceUsePercent' is 0.5 - meaning weight will be given to top 50% of classification accuracies
+	- 'featureType' = 1; --> GM subjects are used
+	- 'kernel' = 'quadratic' --> SVM Kernel
+
+
+
+
+TUTORIAL:
+
+	- Data Center Info
+			- dataCenterID_training: KKI = 1, NeuroIMAGE = 2, NYU = 3, OHSU = 4, Peking_[1,2,3] = [5,6,7], Pittsburgh = 8, WashU = 9 
+			- dataCenterID_test:     Brown = 1, KKI = 2, NeuroIMAGE = 3, NYU = 4, OHSU = 5, Peking_1 = 6, Pittsburgh = 7
+			- input the keys of the data sets to be used in 'dataCenterID_training_All' and 'dataCenterID_test_All' arrays
+			- 'sliceUsePercent' is the threshold for the weight vector for classification. 
+			- FeatureType ---> GM = 1, NormalizedImage = 2, WM = 3
+
+	- Prepare Data
+			- Load phenotypic information
+			- Load deep learning features from Caffe (previously extracted)
+			- Sort subjects and diagnosis labels by taking out bad data and aligning the subjects with the corresponding label
+			- Calculate Weight Vector***
+				- Rescale it using double exponential distribution
+			- Normalize feature vectors through min max normalization
+
+	- Classify
+			- Run SVM for FC6, FC7, and FC6 & FC7
+				- Store results and rescaled weight vector in detection matrix and save data to results folder
+			- Final detection scores are the dot product of the rescaled weight vector and the 3 dimension matrices
+			- Vary decision thresholds (for loop)
+			- Calculate sensitivity, specificity, and accuracy of the decisions of the test data set
+			- Save the sensitivity, specificity, and accuracy in the 'AccuracyMatrixAll'

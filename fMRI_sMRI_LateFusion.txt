@@ -1,0 +1,37 @@
+file: fMRI_sMRI_LateFusion.m
+
+Description: Multimodal Channel Late Fusion of sMRI Deep Learning Features and fMRI "*Power Map / PCA-LDA / LBP*" Features
+
+Notes:
+	- Finetuning did not improve results. Stick to original data. Change paths to the normal paths which are commented out instead of the finetune paths
+
+
+List and describe changes here:
+	-
+	-
+	-
+	-
+	-
+
+
+DEFAULT SETTINGS:
+	- Fusion Parameters
+		- FC6+FC7
+		- GM and WM
+		- Deep Learning
+
+
+
+
+TUTORIAL:
+	- Prepare Data
+			- Load phenotypic information
+			- Load deep learning detection matrices
+			- Calculate weight vector and get 'finalScoreDeepLearning' for GM
+			- Load detection matrices for LBP_onPowerMap
+	- Final Classification
+			- Calculate Accuracies to save in AccuracyMatrix
+			- Calculate 'avgAccuracyDeepLearning'
+*			- Calculate fusion detection matrices with GM and Power Map-LBP and/or Power Map
+*			- Calculate final AccuracyMatrix
+*			- Plot 

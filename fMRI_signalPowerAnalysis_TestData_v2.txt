@@ -1,0 +1,43 @@
+file:   fMRI_signalPowerAnalysis_TestData_v2.m
+
+Description: PCA-LDA Classification
+
+
+List and describe changes here:
+	-
+	-
+	-
+	-
+	-
+
+
+DEFAULT SETTINGS:
+	- Train Using Full Data Set 
+		- Train: KKI, NeuroIMAGE, NYU, OHSU, Peking_3
+		- Test: KKI, NeuroIMAGE, NYU, OHSU, Peking_1
+	- 'sliceUsePercent' is 0.5 - meaning weight will be given to top 50% of classification accuracies
+	- 'featureType' = 1; --> GM subjects are used
+	- 'kernel' = 'quadratic' --> SVM Kernel
+
+
+
+
+TUTORIAL:
+	
+	- Data Center Info
+	- Prepare Data
+			- Load global mask; load ADHD labels; bad data indexes are listed
+			- Prepare voxel template
+*			- 'LBP_multiplier'
+	- Calculations
+		- Load subjects per data center
+			- Create 4D brain structure (4th dimension is the time series)
+*			- Create voxel power map (I'm a little unclear on this)
+			- 'voxelPowerMapADHD' and 'voxelPowerMapControl' are created
+*		- Compute LBP in the three orthogonal directions
+*		- LDA and LBP Calculations Occur 
+*		- Train Data PCA 
+*	- Classification
+*		- PCA_LDA Detection
+		- SVM
+			- Calculates Sensitivity, Specificity, and Accuracy (Correct Detections)
